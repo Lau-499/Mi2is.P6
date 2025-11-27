@@ -18,6 +18,13 @@ public class Usuario {
         this.id = id;
     }
     
+    private String contrasenya;
+    public String getContrasenya() {
+        return contrasenya;
+    }
+    public void setContrasenya(String contrasenya) {
+        this.contrasenya = contrasenya;
+    }
 
     private String nombre;
     public String getNombre() {
@@ -35,7 +42,24 @@ public class Usuario {
         this.apellidos = apellidos;
     }
     
+    public void IniciarSesion(Long ID, String password) {
+        if (this.id == ID && this.contrasenya.equals(password)) {
+            System.out.println("Inicio de sesión exitoso.");
+        } else {
+            System.out.println("ID o contraseña incorrectos.");
+        }
+    }
 
-    
+    public void RegistrarUsuario(Long ID, String password, String nombre, String apellidos) {
+        this.id = ID;
+        this.contrasenya = password;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        System.out.println("Usuario registrado exitosamente.");
+    }
+
+    public void CerrarSesion() {
+        System.out.println("Sesión cerrada.");
+    }
 
 }
