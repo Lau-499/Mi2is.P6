@@ -18,5 +18,7 @@ public class UsuarioController {
     public List<Usuario> getAllUsuarios() {
         return usuarioService.getAllUsuarios();
     }
+
+
     
 }
