@@ -1,4 +1,4 @@
-package IS.grupoD.Mi2is.P6;
+package IS.grupoD.Mi2is.P6.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
