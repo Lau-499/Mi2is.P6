@@ -16,6 +16,7 @@ public class UsuarioService {
         return repositoryUsuario.findAll();
     }
 
+    @SuppressWarnings("null")
     public java.util.Optional<Usuario> getUsuarioById(Long id) {
         return repositoryUsuario.findById(id);
     }
@@ -26,6 +27,7 @@ public class UsuarioService {
         return repositoryUsuario.save(u);
     }
 
+    @SuppressWarnings("null")
     public Usuario updateUsuario(Long id, Usuario updatedData) {
         return repositoryUsuario.findById(id)
                 .map(user -> {
@@ -38,6 +40,7 @@ public class UsuarioService {
                 .orElseThrow(() -> new RuntimeException("Usuario not found"));
     }
 
+    @SuppressWarnings("null")
     public void deleteUsuario(Long id) {
         if (!repositoryUsuario.existsById(id)) {
             throw new RuntimeException("Usuario not found");
