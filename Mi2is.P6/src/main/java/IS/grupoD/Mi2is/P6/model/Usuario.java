@@ -73,5 +73,7 @@ public class Usuario {
         System.out.println("Sesión cerrada.");
         this.login = false;
     }
-
+    //hola caracola
+    private string holacaracola;
+    
 }
