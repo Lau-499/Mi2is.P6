@@ -16,10 +16,32 @@ public class UsuarioService {
         return repositoryUsuario.findAll();
     }
 
+    public java.util.Optional<Usuario> getUsuarioById(Long id) {
+        return repositoryUsuario.findById(id);
+    }
     public Usuario addUsuario(Usuario u) {
         if (u == null) {
             throw new IllegalArgumentException("Usuario cannot be null");
         }
         return repositoryUsuario.save(u);
+    }
+
+    public Usuario updateUsuario(Long id, Usuario updatedData) {
+        return repositoryUsuario.findById(id)
+                .map(user -> {
+                    user.setNombre(updatedData.getNombre());
+                    user.setContrasenya(updatedData.getContrasenya());
+                    user.setId(updatedData.getId());
+                    user.setApellidos(updatedData.getApellidos());
+                    return repositoryUsuario.save(user);
+                })
+                .orElseThrow(() -> new RuntimeException("Usuario not found"));
+    }
+
+    public void deleteUsuario(Long id) {
+        if (!repositoryUsuario.existsById(id)) {
+            throw new RuntimeException("Usuario not found");
+        }
+        repositoryUsuario.deleteById(id);
     }
 }
