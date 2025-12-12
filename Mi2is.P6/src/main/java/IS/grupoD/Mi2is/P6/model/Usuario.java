@@ -41,39 +41,9 @@ public class Usuario {
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
     }
+
+
+    //hola caracola (la he borrado, pero dejo el comentario -Laura)
     
-    public boolean login;
-    public boolean isLogin() {
-        return login;
-    }
-    public void setLogin(boolean login) {
-        this.login = login;
-    }
-
-
-    public void IniciarSesion(Long ID, String password) {
-        if (this.id == ID && this.contrasenya.equals(password)) {
-            System.out.println("Inicio de sesión exitoso.");
-            this.login = true;
-        } else {
-            System.out.println("ID o contraseña incorrectos.");
-            this.login = false;
-        }
-    }
-
-    public void RegistrarUsuario(Long ID, String password, String nombre, String apellidos) {
-        this.id = ID;
-        this.contrasenya = password;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        System.out.println("Usuario registrado exitosamente.");
-    }
-
-    public void CerrarSesion() {
-        System.out.println("Sesión cerrada.");
-        this.login = false;
-    }
-    //hola caracola
-    private string holacaracola;
     
 }
