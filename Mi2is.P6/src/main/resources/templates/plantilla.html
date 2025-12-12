@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Vista de Usuario</title>
+</head>
+<body>
+    <h1>Información del usuario</h1>
+
+    <p><strong>Nombre:</strong> <span th:text="${usuario?.nombre}">Nombre</span></p>
+    <p><strong>Contrasenya:</strong> <span th:text="${usuario?.contrasenya}">Contrasenya</span></p>
+    <p><strong>Apellidos</strong> <span th:text="${usuario?.Apellidos}">Apellidos</span></p>
+
+</body>
+</html>
