@@ -1,5 +1,8 @@
 package IS.grupoD.Mi2is.P6.model;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Medico extends Usuario {
         
     private String especialidad;
@@ -25,6 +28,9 @@ public class Medico extends Usuario {
         this.setContrasenya(cc);
         this.especialidad = especialidad;
         this.CentroMedico = centroMedico;
+    }
+
+    public Medico() {
     }
 
 

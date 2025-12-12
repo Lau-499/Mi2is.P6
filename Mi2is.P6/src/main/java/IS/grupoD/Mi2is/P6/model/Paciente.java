@@ -2,6 +2,9 @@ package IS.grupoD.Mi2is.P6.model;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Paciente extends Usuario {
     
     private String nss;
@@ -53,6 +56,9 @@ public class Paciente extends Usuario {
         this.email = email;
         this.telefono = telefono;
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public Paciente() {
     }
 
 

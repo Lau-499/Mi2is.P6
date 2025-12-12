@@ -33,7 +33,6 @@ public class UsuarioService {
                 .map(user -> {
                     user.setNombre(updatedData.getNombre());
                     user.setContrasenya(updatedData.getContrasenya());
-                    user.setId(updatedData.getId());
                     user.setApellidos(updatedData.getApellidos());
                     return repositoryUsuario.save(user);
                 })
