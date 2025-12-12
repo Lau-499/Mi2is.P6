@@ -18,4 +18,7 @@ public class Medico {
         this.CentroMedico = centroMedico;
     }
 
+
+    
+
 }
