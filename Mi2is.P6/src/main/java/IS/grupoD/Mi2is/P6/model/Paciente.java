@@ -2,7 +2,7 @@ package IS.grupoD.Mi2is.P6.model;
 
 import java.time.LocalDate;
 
-public class Paciente {
+public class Paciente extends Usuario {
     
     private String nss;
     public String getNss() {
@@ -41,6 +41,17 @@ public class Paciente {
         return fechaNacimiento;
     }
     public void setFechaNacimiento(LocalDate fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public Paciente(String n, String a, String cc, String nss, String dni, String email, String telefono, LocalDate fechaNacimiento) {
+        this.setNombre(n);
+        this.setApellidos(a);
+        this.setContrasenya(cc);
+        this.nss = nss;
+        this.dni = dni;
+        this.email = email;
+        this.telefono = telefono;
         this.fechaNacimiento = fechaNacimiento;
     }
 
