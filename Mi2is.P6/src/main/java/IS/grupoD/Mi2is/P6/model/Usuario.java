@@ -42,11 +42,22 @@ public class Usuario {
         this.apellidos = apellidos;
     }
     
+    public boolean login;
+    public boolean isLogin() {
+        return login;
+    }
+    public void setLogin(boolean login) {
+        this.login = login;
+    }
+
+
     public void IniciarSesion(Long ID, String password) {
         if (this.id == ID && this.contrasenya.equals(password)) {
             System.out.println("Inicio de sesión exitoso.");
+            this.login = true;
         } else {
             System.out.println("ID o contraseña incorrectos.");
+            this.login = false;
         }
     }
 
@@ -60,6 +71,7 @@ public class Usuario {
 
     public void CerrarSesion() {
         System.out.println("Sesión cerrada.");
+        this.login = false;
     }
 
 }
