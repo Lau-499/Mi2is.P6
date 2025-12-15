@@ -13,12 +13,12 @@ public class PlantillaController {
 
     private final UsuarioService usuarioService;
 
-    // Inyección por constructor (mejor práctica)
+    
     public PlantillaController(UsuarioService usuarioService) {
         this.usuarioService = usuarioService;
     }
 
-    // Ruta que devuelve un HTML, igual que tu ejemplo
+    // Ruta que devuelve un HTML
     @GetMapping("/plantillas/{id}")
     public String mostrarPlantilla(@PathVariable long id, Model model) {
 
