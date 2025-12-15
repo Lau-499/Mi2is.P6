@@ -30,8 +30,8 @@ public class UsuarioController {
         return usuarioService.getAllUsuarios();
     }
 
-    // GET - Get by ID
-    @GetMapping("/{id}")
+    // GET - Get by ID (only numeric IDs to avoid collisions with other paths)
+    @GetMapping("/{id:\\d+}")
     public ResponseEntity<Usuario> getUsuarioById(@PathVariable Long id) {
         return usuarioService.getUsuarioById(id)
                 .map(ResponseEntity::ok)
@@ -45,7 +45,7 @@ public class UsuarioController {
     }
 
     // PUT - Update
-    @PutMapping("/{id}")
+    @PutMapping("/{id:\\d+}")
     public ResponseEntity<Usuario> updateUsuario(
             @PathVariable Long id,
             @RequestBody Usuario u) {
@@ -57,7 +57,7 @@ public class UsuarioController {
     }
 
     // DELETE - Delete
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id:\\d+}")
     public ResponseEntity<Void> deleteUsuario(@PathVariable Long id) {
         try {
             usuarioService.deleteUsuario(id);

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Registrar médico</title>
+</head>
+<body>
+    <h1>Registrar médico</h1>
+    <form action="/register/medico" method="post">
+        <input type="hidden" name="nombre" th:value="${nombre}" />
+        <input type="hidden" name="apellidos" th:value="${apellidos}" />
+        <input type="hidden" name="contrasenya" th:value="${contrasenya}" />
+
+        <label>Especialidad: <input type="text" name="especialidad" required></label><br>
+        <label>Centro médico: <input type="text" name="centroMedico" required></label><br>
+        <button type="submit">Registrar médico</button>
+    </form>
+</body>
+</html>

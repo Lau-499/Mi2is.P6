@@ -31,3 +31,36 @@
     </table>
 </body>
 </html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Usuarios</title>
+    <style>
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; }
+    </style>
+</head>
+<body>
+    <h2>Usuarios</h2>
+    <a th:href="@{/usuario/form}">Crear nuevo usuario</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Tipo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="u : ${usuarios}">
+                <td th:text="${u.id}">1</td>
+                <td th:text="${u.nombre}">Nombre</td>
+                <td th:text="${u.apellidos}">Apellidos</td>
+                <td th:text="${u.getClass().getSimpleName()}">Usuario</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

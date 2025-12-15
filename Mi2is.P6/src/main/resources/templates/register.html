@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Registrar usuario</title>
+</head>
+<body>
+    <h1>Registrar usuario</h1>
+    <form action="/register/choice" method="post">
+        <label>Nombre: <input type="text" name="nombre" required></label><br>
+        <label>Apellidos: <input type="text" name="apellidos" required></label><br>
+        <label>Contraseña: <input type="password" name="contrasenya" required></label><br>
+        <button type="submit" name="role" value="medico">Soy médico</button>
+        <button type="submit" name="role" value="paciente">Soy paciente</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Registrar paciente</title>
+</head>
+<body>
+    <h1>Registrar paciente</h1>
+    <form action="/register/paciente" method="post">
+        <input type="hidden" name="nombre" th:value="${nombre}" />
+        <input type="hidden" name="apellidos" th:value="${apellidos}" />
+        <input type="hidden" name="contrasenya" th:value="${contrasenya}" />
+
+        <label>NSS: <input type="text" name="nss" required></label><br>
+        <label>DNI: <input type="text" name="dni" required></label><br>
+        <label>Email: <input type="email" name="email" required></label><br>
+        <label>Teléfono: <input type="text" name="telefono" required></label><br>
+        <label>Fecha nacimiento: <input type="date" name="fechaNacimiento"></label><br>
+        <button type="submit">Registrar paciente</button>
+    </form>
+</body>
+</html>
