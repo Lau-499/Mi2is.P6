@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Usuario</title>
+    <script>
+        function setAction(tipo) {
+            const form = document.getElementById('usuarioForm');
+            if (tipo === 'paciente') {
+                form.action = '/paciente/guardar';
+            } else {
+                form.action = '/medico/guardar';
+            }
+        }
+    // El ID se generará automáticamente en el backend, así que no es necesario agregar un campo de entrada para el ID aquí.
+    </script>
+</head>
+<body>
+    <h2>Registro de Usuario</h2>
+    <form id="usuarioForm" th:action="@{/usuario/guardar}" th:object="${usuario}" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" th:field="*{nombre}" required><br><br>
+
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" id="apellidos" th:field="*{apellidos}" required><br><br>
+
+        <label for="contrasenya">Contraseña:</label>
+        <input type="password" id="contrasenya" th:field="*{contrasenya}" required><br><br>
+
+        <button type="submit">Registrar</button>
+        <a th:href="@{/usuario/lista}">Ver lista de usuarios</a>
+    </form>
+</body>
+</html>
