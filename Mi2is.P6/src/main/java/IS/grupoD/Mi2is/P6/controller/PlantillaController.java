@@ -19,7 +19,7 @@ public class PlantillaController {
     }
 
     // Ruta que devuelve un HTML
-    @GetMapping("/plantillas/{id}")
+    @GetMapping("/usuarioid/{id}")
     public String mostrarPlantilla(@PathVariable long id, Model model) {
 
         // Obtenemos el usuario por id y pasamos datos al HTML
