@@ -12,9 +12,8 @@
     <p><strong>Contraseña:</strong> <span th:text="${usuario?.contrasenya}">Contrasenya</span></p>
     
     <p><strong>Rol:</strong>
-        <span th:if="${usuario.especialidad != null}">Médico</span>
-        <span th:if="${usuario.nss != null}">Paciente</span>
-        <span th:if="${usuario.especialidad == null and usuario.nss == null}">Usuario</span>
+        <span th:if="${usuario instanceof T(IS.grupoD.Mi2is.P6.model.Medico)}">Médico</span>
+        <span th:if="${usuario instanceof T(IS.grupoD.Mi2is.P6.model.Paciente)}">Paciente</span> 
     </p>
 
     <div th:if="${usuario instanceof T(IS.grupoD.Mi2is.P6.model.Medico)}"
