@@ -12,8 +12,9 @@
     <p><strong>Contraseña:</strong> <span th:text="${usuario?.contrasenya}">Contrasenya</span></p>
     
     <p><strong>Rol:</strong>
-        <span th:if="${usuario instanceof T(IS.grupoD.Mi2is.P6.model.Medico)}">Médico</span>
-        <span th:if="${usuario instanceof T(IS.grupoD.Mi2is.P6.model.Paciente)}">Paciente</span> 
+        <span th:if="${usuario.especialidad != null}">Médico</span>
+        <span th:if="${usuario.nss != null}">Paciente</span>
+        <span th:if="${usuario.especialidad == null and usuario.nss == null}">Usuario</span>
     </p>
 
     <div th:if="${usuario instanceof T(IS.grupoD.Mi2is.P6.model.Medico)}"
@@ -31,6 +32,15 @@
     <p>Email: <span th:text="${p.email}"></span></p>
     <p>Teléfono: <span th:text="${p.telefono}"></span></p>
     <p>Fecha nacimiento: <span th:text="${p.fechaNacimiento}"></span></p>
+</div>
+
+<div>
+    <form th:action="@{'/usuarioid/' + ${usuario.id} + '/edit'}" method="get" style="display:inline;">
+        <button type="submit">Modificar</button>
+    </form>
+    <form th:action="@{'/usuarioid/' + ${usuario.id} + '/delete'}" method="post" style="display:inline; margin-left:8px;">
+        <button type="submit">Borrar</button>
+    </form>
 </div>
 
 

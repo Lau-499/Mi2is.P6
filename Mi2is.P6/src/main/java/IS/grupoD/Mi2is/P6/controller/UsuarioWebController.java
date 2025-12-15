@@ -1,6 +1,6 @@
 package IS.grupoD.Mi2is.P6.controller;
 
-import org.springframework.stereotype.Controller;
+// Controller disabled to avoid mapping conflicts
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import IS.grupoD.Mi2is.P6.model.Usuario;
 import IS.grupoD.Mi2is.P6.model.UsuarioService;
 
-@Controller
 public class UsuarioWebController {
 
     private final UsuarioService usuarioService;

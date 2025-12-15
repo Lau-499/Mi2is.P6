@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Usuario</title>
+</head>
+<body>
+    <h1>Usuario</h1>
+    <div>
+        <p><strong>ID:</strong> <span th:text="${usuario.id}">1</span></p>
+        <p><strong>Nombre:</strong> <span th:text="${usuario.nombre}">Nombre</span></p>
+        <p><strong>Apellidos:</strong> <span th:text="${usuario.apellidos}">Apellidos</span></p>
+        <p><strong>Tipo:</strong> <span th:text="${usuario.getClass().getSimpleName()}">Usuario</span></p>
+    </div>
+
+    <div>
+        <a th:href="@{'/usuarioid/' + ${usuario.id} + '/edit'}">Modificar</a>
+        <form th:action="@{'/usuarioid/' + ${usuario.id} + '/delete'}" method="post" style="display:inline;">
+            <button type="submit">Borrar</button>
+        </form>
+    </div>
+
+    <div>
+        <a th:href="@{/usuario/lista}">Volver a la lista</a>
+    </div>
+</body>
+</html>
