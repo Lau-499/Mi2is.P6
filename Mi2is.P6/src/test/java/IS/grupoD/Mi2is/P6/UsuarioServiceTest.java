@@ -89,7 +89,7 @@ public class UsuarioServiceTest {
     public void updateCuenta_cuentaExistente_cuentaActualizada() {
         //Arrange
         Medico Medicooo = new Medico("Anita", "Gomez", "abcd", "Cirugía","Hospital Central");
-        when(repositoryUsuario)
+        when(repositoryUsuario);
     }
 
 
