@@ -301,6 +301,15 @@ public class UsuarioServiceTest {
         verify(repositoryUsuario).deleteById(idExistente);
     }
 
+    @SuppressWarnings("null")
+    @Test
+    @DisplayName("Comprueba que no se puede añadir un paciente que no existe")
+    void addUsuario_usuarioNull_lanzaExcepcion() {
+        assertThrows(IllegalArgumentException.class, () -> usuarioService.addUsuario(null));
+        verify(repositoryUsuario, never()).save(any());
+    }
+
+
 
 
 
