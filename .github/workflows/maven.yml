@@ -28,4 +28,5 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      working-directory: Mi2is.P6\Mi2is.P6
+      run: mvn -B clean test jacoco:report
