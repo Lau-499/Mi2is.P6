@@ -2,6 +2,8 @@ package IS.grupoD.Mi2is.P6;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -41,6 +43,7 @@ public class UsuarioServiceTest {
 
         //Act
         List<Usuario> result = usuarioService.getAllUsuarios();
+        when(repositoryUsuario.findAll()).thenReturn(List.of());
         int size0obtained = result.size();
 
         //Assert
@@ -80,8 +83,10 @@ public class UsuarioServiceTest {
         Optional<Usuario> result2 = usuarioService.getUsuarioById(2L);
 
         //Assert
-        assertEquals(mmedico, result1);
-        assertEquals(ppaciente, result2);
+        assertTrue(result1.isPresent());
+        assertEquals(mmedico, result1.get());
+        assertTrue(result2.isPresent());
+        assertEquals(ppaciente, result2.get());
         verify(repositoryUsuario).findById(1L);
         verify(repositoryUsuario).findById(2L);
     }
@@ -160,29 +165,47 @@ public class UsuarioServiceTest {
         verify(repositoryUsuario).save(pac);
     }
 
+    @SuppressWarnings("null")
     @Test
-    @DisplayName("Comprueba que no se puede actualizar un usuario que no existe")
-    public void updatedUsuario_usuarioNoExistente_lanzaExcepcion() {
-        //Arrange
-        Medico medicoNoExistente = new Medico("Carlos", "Lopez", "abcd", "Cardiología","Hospital Norte");
-        medicoNoExistente.setId(99L);
-        when(repositoryUsuario.findById(99L)).thenReturn(java.util.Optional.empty());
-        Paciente pacienteNoExistente = new Paciente("Sofia", "Ramirez", "1234", "NSS54321","DNI54321","SOFIA@EMAIL.COM","1234567890", LocalDate.of(1995, 8, 15));
-        pacienteNoExistente.setId(100L);
-        when(repositoryUsuario.findById(100L)).thenReturn(java.util.Optional.empty());
+    @DisplayName("Comprueba que no se puede actualizar un médico que no existe")
+    public void updateUsuario_medicoNoExistente_lanzaExcepcion() {
+        // Arrange
+        Medico medicoNoExistente = new Medico("Carlos", "Lopez", "abcd", "Cardiología", "Hospital Norte");
+        when(repositoryUsuario.findById(99L)).thenReturn(Optional.empty());
 
-        //Act & Assert
-        assertThrows(IllegalArgumentException.class, () -> {
-            usuarioService.updateUsuario(99L, medicoNoExistente);
-            usuarioService.updateUsuario(100L, pacienteNoExistente);
+        // Act & Assert
+        assertThrows(RuntimeException.class, () ->
+            usuarioService.updateUsuario(99L, medicoNoExistente)
+        );
 
-
-        });
-        verify(repositoryUsuario).findById(1L);
-        verify(repositoryUsuario, never()).save(medicoNoExistente);
-        verify(repositoryUsuario).findById(2L);
-        verify(repositoryUsuario, never()).save(pacienteNoExistente);
+        verify(repositoryUsuario).findById(99L);
+        verify(repositoryUsuario, never()).save(any());
     }
+
+    @SuppressWarnings("null")
+    @Test
+    @DisplayName("Comprueba que no se puede actualizar un paciente que no existe")
+    public void updateUsuario_pacienteNoExistente_lanzaExcepcion() {
+        // Arrange
+        Paciente pacienteNoExistente = new Paciente(
+            "Sofia", "Ramirez", "1234",
+            "NSS54321", "DNI54321",
+            "SOFIA@EMAIL.COM", "1234567890",
+            LocalDate.of(1995, 8, 15)
+        );
+
+        when(repositoryUsuario.findById(100L)).thenReturn(Optional.empty());
+
+        // Act & Assert
+        assertThrows(RuntimeException.class, () ->
+            usuarioService.updateUsuario(100L, pacienteNoExistente)
+        );
+
+        verify(repositoryUsuario).findById(100L);
+        verify(repositoryUsuario, never()).save(any());
+    }
+
+
 
     @Test
     @DisplayName("Comprueba que no se puede eliminar un usuario a través del objeto usuario que no existe")

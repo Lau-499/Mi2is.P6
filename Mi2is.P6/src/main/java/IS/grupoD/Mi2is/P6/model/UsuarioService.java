@@ -39,11 +39,8 @@ public class UsuarioService {
                 .orElseThrow(() -> new RuntimeException("Usuario not found"));
     }
 
-    @SuppressWarnings("null")
-    public void deleteUsuario(Long lon) {
-        if (!repositoryUsuario.existsById(lon)) {
-            throw new RuntimeException("Usuario not found");
-        }
-        repositoryUsuario.deleteById(lon);
-    }
+    
+
+    
+
 }
