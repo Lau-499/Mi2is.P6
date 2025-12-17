@@ -40,10 +40,10 @@ public class UsuarioService {
     }
 
     @SuppressWarnings("null")
-    public void deleteUsuario(Long id) {
-        if (!repositoryUsuario.existsById(id)) {
+    public void deleteUsuario(Long lon) {
+        if (!repositoryUsuario.existsById(lon)) {
             throw new RuntimeException("Usuario not found");
         }
-        repositoryUsuario.deleteById(id);
+        repositoryUsuario.deleteById(lon);
     }
 }
