@@ -229,6 +229,7 @@ public class UsuarioServiceTest {
         verify(repositoryUsuario).deleteById(20L);
     }
 
+    @SuppressWarnings("null")
     @Test
     @DisplayName("Comprueba que no se puede eliminar un usuario por id si el id es null")
     public void deleteUsuario_idNull_lanzaExcepcion() {
@@ -237,9 +238,9 @@ public class UsuarioServiceTest {
 
         //Act & Assert
         assertThrows(IllegalArgumentException.class, () -> {
-            usuarioService.deleteUsuario(null);
+            usuarioService.deleteUsuario(id);
         });
-        verify(repositoryUsuario, never()).deleteById(null);
+        verify(repositoryUsuario, never()).deleteById(id);
 
     }
 
