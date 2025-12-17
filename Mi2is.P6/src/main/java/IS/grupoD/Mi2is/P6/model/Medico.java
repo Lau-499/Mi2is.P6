@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 @Entity
 public class Medico extends Usuario {
         
+    
     private String especialidad;
     public String getEspecialidad() {
         return especialidad;
