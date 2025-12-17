@@ -39,18 +39,17 @@ public class UsuarioServiceTest {
     @Test
     @DisplayName("Comprueba que se pueden obtener todos los usuarios")
     public void getAllUsuarios_noUsuarios_obtieneListaVacia() {
-        //Arrange
-
-        //Act
-        List<Usuario> result = usuarioService.getAllUsuarios();
+        // Arrange
         when(repositoryUsuario.findAll()).thenReturn(List.of());
-        int size0obtained = result.size();
 
-        //Assert
-        assertEquals(0, size0obtained);
+        // Act
+        List<Usuario> result = usuarioService.getAllUsuarios();
+
+        // Assert
+        assertEquals(0, result.size());
         verify(repositoryUsuario).findAll();
-        
     }
+
 
     @Test
     @DisplayName("Comprueba que devuelve más de un usuario")
@@ -208,27 +207,31 @@ public class UsuarioServiceTest {
 
 
     @Test
-    @DisplayName("Comprueba que no se puede eliminar un usuario a través del objeto usuario que no existe")
-    public void deleteUsuario_usuarioNoExistente_lanzaExcepcion() {
-        //Arrange
-        Medico med = new Medico("Laura", "Sanchez", "abcd", "Neurología","Hospital Este");
-        med.setId(50L);
-        Paciente paci = new Paciente("Diego", "Torres", "1234", "NSS11223","DNI11223","DIEGO@EMAIL.COM","1234567890", LocalDate.of(1992, 10, 10));
-        paci.setId(60L);
-
+    @DisplayName("Comprueba que no se puede eliminar un médico que no existe")
+    public void deleteUsuario_medicoNoExistente_lanzaExcepcion() {
+        // Arrange
         when(repositoryUsuario.existsById(50L)).thenReturn(false);
-        when(repositoryUsuario.existsById(60L)).thenReturn(false);
 
-        //Act & Assert
-        assertThrows(RuntimeException.class, () -> {
-            usuarioService.deleteUsuario(med.getId());
-            usuarioService.deleteUsuario(paci.getId());
-        });
+        // Act & Assert
+        assertThrows(RuntimeException.class, () -> usuarioService.deleteUsuario(50L));
+
         verify(repositoryUsuario).existsById(50L);
         verify(repositoryUsuario, never()).deleteById(50L);
+    }
+
+    @Test
+    @DisplayName("Comprueba que no se puede eliminar un paciente que no existe")
+    public void deleteUsuario_pacienteNoExistente_lanzaExcepcion() {
+        // Arrange
+        when(repositoryUsuario.existsById(60L)).thenReturn(false);
+
+        // Act & Assert
+        assertThrows(RuntimeException.class, () -> usuarioService.deleteUsuario(60L));
+
         verify(repositoryUsuario).existsById(60L);
         verify(repositoryUsuario, never()).deleteById(60L);
     }
+
 
     @Test
     @DisplayName("Comprueba que se puede eliminar un usuario a través del objeto usuario")
@@ -252,20 +255,21 @@ public class UsuarioServiceTest {
         verify(repositoryUsuario).deleteById(20L);
     }
 
+    
     @SuppressWarnings("null")
     @Test
     @DisplayName("Comprueba que no se puede eliminar un usuario por id si el id es null")
     public void deleteUsuario_idNull_lanzaExcepcion() {
-        //Arrange
+        // Arrange
         Long id = null;
 
-        //Act & Assert
-        assertThrows(IllegalArgumentException.class, () -> {
-            usuarioService.deleteUsuario(id);
-        });
-        verify(repositoryUsuario, never()).deleteById(id);
+        // Act & Assert
+        assertThrows(IllegalArgumentException.class, () -> usuarioService.deleteUsuario(id));
 
+        verify(repositoryUsuario, never()).existsById(any());
+        verify(repositoryUsuario, never()).deleteById(any());
     }
+
 
     @Test
     @DisplayName("Comprueba que no se puede eliminar una cuenta con un id que no existe")
@@ -285,16 +289,18 @@ public class UsuarioServiceTest {
     @Test
     @DisplayName("Comprueba que se puede eliminar una cuenta con un id")
     public void deleteUsuario_idExistente_usuarioEliminado() {
-        //Arrange
+        // Arrange
         Long idExistente = 1L;
         when(repositoryUsuario.existsById(idExistente)).thenReturn(true);
 
-        //Act
+        // Act
         usuarioService.deleteUsuario(idExistente);
 
-        //Assert
+        // Assert
+        verify(repositoryUsuario).existsById(idExistente);
         verify(repositoryUsuario).deleteById(idExistente);
     }
+
 
 
 

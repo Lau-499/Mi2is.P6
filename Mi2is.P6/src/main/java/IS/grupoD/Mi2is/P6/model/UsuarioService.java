@@ -39,7 +39,15 @@ public class UsuarioService {
                 .orElseThrow(() -> new RuntimeException("Usuario not found"));
     }
 
-    
+    public void deleteUsuario(Long lon) {
+        if (lon == null) {
+            throw new IllegalArgumentException("id cannot be null");
+        }
+        if (!repositoryUsuario.existsById(lon)) {
+            throw new RuntimeException("Usuario not found");
+        }
+        repositoryUsuario.deleteById(lon);
+    }
 
     
 
