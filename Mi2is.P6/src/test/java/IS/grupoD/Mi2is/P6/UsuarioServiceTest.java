@@ -91,7 +91,6 @@ public class UsuarioServiceTest {
     public void updateUsuario_cuentaExistente_usuarioActualizado() {
         //Arrange
         Medico Medicooo = new Medico("Anita", "Gomez", "abcd", "Cirugía","Hospital Central");
-<<<<<<< HEAD
         when(repositoryUsuario.save(Medicooo)).thenReturn(Medicooo);
         Paciente Pacienteee = new Paciente("Luis", "Martinez", "1234", "NSS67890","DNI67890","LUIS@EMAIL.COM","1235456778", LocalDate.of(1990, 5, 20));
         when(repositoryUsuario.save(Pacienteee)).thenReturn(Pacienteee);
@@ -131,9 +130,6 @@ public class UsuarioServiceTest {
         assertEquals(expectedFechaNacimiento, ((Paciente) result2).getFechaNacimiento());
         verify(repositoryUsuario).save(Pacienteee);
 
-=======
-        when(repositoryUsuario);
->>>>>>> 5674fef2ea092f940f93ed958217a50c465e73c3
     }
 
     @Test
